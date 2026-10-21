@@ -1,75 +1,21 @@
-# React + TypeScript + Vite
+# BenchTwin
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+A global hub of editable 3D hardware boards. Scan a real board, practice soldering in a safe sandbox, and export every action as robot-ready instructions.
 
-Currently, two official plugins are available:
+This repo contains **AeroReflow**, the sandbox core: a browser-based 3D soldering chamber with a robot arm controlled by webcam hand gestures.
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+## Run locally
+1. Install Node.js LTS (20 or newer)
+2. `git clone https://github.com/stacis-gamer/benchtwin.git`
+3. `cd benchtwin`
+4. `npm ci`
+5. `npm run dev`
+6. Open http://localhost:5173 and click **Enable Camera** (allow the permission prompt)
 
-## React Compiler
+## Controls
+- Move your hand: the arm follows
+- Transporting mode: fist = grab, open hand = release
+- Soldering mode: pinch (OK sign) = heat and solder
+- No camera: mouse to move, hold Space to grab or solder, keys 1 and 2 switch modes
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
-
-## Expanding the ESLint configuration
-
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
-
-```js
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-
-      // Remove tseslint.configs.recommended and replace with this
-      tseslint.configs.recommendedTypeChecked,
-      // Alternatively, use this for stricter rules
-      tseslint.configs.strictTypeChecked,
-      // Optionally, add this for stylistic rules
-      tseslint.configs.stylisticTypeChecked,
-
-      // Other configs...
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
-
-```
-
-You can also install [eslint-plugin-react-x](https://npmx.dev/package/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://npmx.dev/package/eslint-plugin-react-dom) for React-specific lint rules:
-
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
-
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-      // Enable lint rules for React
-      reactX.configs['recommended-typescript'],
-      // Enable lint rules for React DOM
-      reactDom.configs.recommended,
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
-
-```
+**Do not upgrade React.** This project needs React 18 (R3F v8, drei v9).
